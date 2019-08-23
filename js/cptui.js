@@ -145,6 +145,10 @@ postboxes.add_postbox_toggles(pagenow);
 		return decodeURIComponent(results[2].replace(/\+/g, " "));
 	}
 
+	function uppercaseFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
 	$('#cptui_choose_icon').on('click',function(e){
 		e.preventDefault();
 
@@ -189,4 +193,20 @@ postboxes.add_postbox_toggles(pagenow);
 			alert( cptui_tax_data.no_associated_type );
 		}
 	});
+
+	$('#auto-populate').on( 'click tap', function(e){
+		e.preventDefault();
+
+		let name = $('#name').val();
+
+		if ( '' === name ) {
+			return;
+		}
+
+		let ucname = uppercaseFirstLetter( name );
+
+		$('#label,#singular_label').val( ucname );
+
+	});
+
 })(jQuery);
