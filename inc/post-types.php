@@ -43,11 +43,13 @@ function cptui_post_type_enqueue_scripts() {
 	$public                = get_post_types( array( '_builtin' => false, 'public' => true ) );
 	$private               = get_post_types( array( '_builtin' => false, 'public' => false ) );
 	$registered_post_types = array_merge( $core, $public, $private );
+	$label_data            = cptui_get_all_labels();
 
 	wp_localize_script( 'cptui', 'cptui_type_data',
 		array(
 			'confirm'             => esc_html__( 'Are you sure you want to delete this? Deleting will NOT remove created content.', 'custom-post-type-ui' ),
 			'existing_post_types' => $registered_post_types,
+			'label_data'          => $label_data,
 		)
 	);
 }
